@@ -1,2 +1,2 @@
-.meteor/local
-.meteor/meteorite
+.vagrant
+meteorapp/.meteor/local
