@@ -10,17 +10,17 @@ if [ ! `command -v meteor 2>/dev/null` ]; then
 fi
 
 # If the real app doesnt exist, create it
-if [ ! -d /vagrant/meteorapp ]; then
-    meteor create /vagrant/meteorapp
-    mkdir -p /vagrant/meteorapp/.meteor/local
+if [ ! -d /vagrant/sappy ]; then
+    meteor create /vagrant/sappy
+    mkdir -p /vagrant/sappy/.meteor/local
 fi
 
 # Mount a directory which can lock files for mongod
-if [ ! -d /home/vagrant/meteorapp/.meteor/local ]; then
-    mkdir -p /home/vagrant/meteorapp/.meteor/local
+if [ ! -d /home/vagrant/sappy/.meteor/local ]; then
+    mkdir -p /home/vagrant/sappy/.meteor/local
 fi
-sudo mount --bind /home/vagrant/meteorapp/.meteor/local/ /vagrant/meteorapp/.meteor/local/
+sudo mount --bind /home/vagrant/sappy/.meteor/local/ /vagrant/sappy/.meteor/local/
 
 # Run the app
-cd /vagrant/meteorapp
+cd /vagrant/sappy
 meteor
