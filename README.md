@@ -1,11 +1,11 @@
-Sappy
-=====
-"Super awesome planning poker, yeah!" is a [Meteor](https://www.meteor.com/) based web app to make planning poker games easier.
+Supp
+====
+"Super useful planning poker!" is a [Meteor](https://www.meteor.com/) based web app to make planning poker games easier.
 
 [toc]
 
 
-##Running Sappy
+##Running Supp
 
 
 ###Windows
