@@ -19,4 +19,4 @@ Mostly from [https://docs.docker.com/installation/windows/]
   1. Run `PuTTY` and connect to `docker@127.0.0.1:2022`
 1. Create a new container
   1. ?
-1. Hit http://localhost:3000 & enjoy Sappy!
+1. Hit http://localhost:3000 & enjoy Supp!
