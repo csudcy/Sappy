@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
   # See https://gist.github.com/gabrielhpugliese/5855677
-  config.vm.provision :shell, :path => "meteor.sh"
+  config.vm.provision :shell, :path => "meteor.sh", run: "always"
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   #config.vm.provider "virtualbox" do |vb|
   #  # vb.gui = true
