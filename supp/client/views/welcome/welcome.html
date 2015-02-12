@@ -8,33 +8,37 @@
         <button class="user_type btn btn-lg btn-primary {{#if user_type 'resource'}}active{{/if}}" data-user_type="resource">Re$ource</button>
 
         {{#if user_type 'resource'}}
-            {{#if rooms}}
+            <span>
+                {{#if rooms}}
+                    <select class="form-control" name="room">
+                        {{#each rooms}}
+                            <option {{room_selected _id}}>{{_id}}</option>
+                        {{/each}}
+                    </select>
+                    {{init_select2}}
+                    <input type="text" class="form-control" name="user" placeholder="Who are you?" value="{{persistent_session 'user'}}"/><br/>
+                    <button class="go btn btn-lg btn-success">Join</button>
+                {{else}}
+                    <span class="help-block">
+                        Sorry, there are no rooms yet!<br/>
+                        A scrum master must create a room before you can join.
+                    </span>
+                {{/if}}
+            </span>
+        {{/if}}
+
+        {{#if user_type 'scrum_master'}}
+            <span>
                 <select class="form-control" name="room">
+                    <option value="">Select an existing room</option>
                     {{#each rooms}}
                         <option {{room_selected _id}}>{{_id}}</option>
                     {{/each}}
                 </select>
-                <input type="text" class="form-control" name="user" placeholder="Who are you?" value="{{persistent_session 'user'}}"/><br/>
+                {{init_select2}}
+
                 <button class="go btn btn-lg btn-success">Join</button>
-            {{else}}
-                <span class="help-block">
-                    Sorry, there are no rooms yet!<br/>
-                    A scrum master must create a room before you can join.
-                </span>
-            {{/if}}
-        {{/if}}
-
-        {{#if user_type 'scrum_master'}}
-            <select class="form-control" name="room">
-                <option value="">Select an existing room</option>
-                {{#each rooms}}
-                    <option {{room_selected _id}}>{{_id}}</option>
-                {{/each}}
-            </select>
-
-            <input type="text" class="form-control" name="room" placeholder="Or create a room"/><br/>
-
-            <button class="go btn btn-lg btn-success">Join</button>
+            </span>
         {{/if}}
     </div>
 

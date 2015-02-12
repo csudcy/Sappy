@@ -14,8 +14,9 @@
     width: 47%;
 }
 
-.welcome_container select {
+.welcome_container .select2 {
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .room_clear {

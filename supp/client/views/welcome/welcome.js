@@ -61,6 +61,16 @@ Template.welcome.helpers({
             return 'selected';
         }
         return '';
+    },
+    init_select2: function() {
+        // Hacky helper to make sure selects are always select2-ised
+        Meteor.defer(function () {
+            $('select[name=room]').select2({
+                placeholder: 'What room?',
+                tags: true,
+                allowClear: true
+            });
+        });
     }
 });
 
