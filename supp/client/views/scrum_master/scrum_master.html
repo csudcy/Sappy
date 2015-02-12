@@ -33,9 +33,13 @@
     <div id="footer">
         <div>
             <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar"
-                   aria-valuenow="{{status_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{status_percentage}}%">
-              </div>
+                {{#if voting_done}}
+                    <div> Average: {{average}} </div>
+                {{else}}
+                    <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar"
+                           aria-valuenow="{{status_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{status_percentage}}%">
+                    </div>
+                {{/if}}
             </div>
             <div>
                 <button class="reset_votes btn btn-danger">Reset votes</button>

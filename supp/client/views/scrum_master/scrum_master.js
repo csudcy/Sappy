@@ -14,11 +14,60 @@ function get_percentage() {
     }
     var result = (Object.keys(users_obj).length - not_completed) * 100 / Object.keys(users_obj).length;
     console.log(result);
-    return result
+    return result;
+}
+
+function finished_vote(users_obj) {
+    if (users_obj) {
+        var total_people = Object.keys(users_obj).length;
+        for(var key in users_obj) {
+            if (users_obj[key] !== null) {
+                total_people--;
+            }
+        }
+        return total_people === 0;
+    }
+}
+
+function get_all_votes(users_obj) {
+    var votes = [];
+    for(var key in users_obj) {
+        if (users_obj[key] === 'C') {
+            console.log('some chose a coffe break');
+        } else if (users_obj[key] === '?') {
+            console.log('uncertain');
+        } else {
+            votes.push(parseInt(users_obj[key], 10));
+        }
+    }
+    return votes;
+}
+
+function get_average_number(votes) {
+    var sum = 0;
+    for (var vote in votes) {
+        console.log(votes[vote]);
+        sum += votes[vote];
+    }
+    return sum / votes.length;
+}
+
+function workout_average_fib_number(votes) {
+    var average = Math.round(get_average_number(votes)),
+        fibs = [0, 1, 2, 3, 5, 8, 13, 20, 40, 100],
+        average_fib = 0;
+
+    for (var i in fibs) {
+        if (Math.abs(fibs[i] - average) < Math.abs(average_fib - average)) {
+            average_fib = fibs[i];
+        }
+    }
+    return average_fib;
 }
 
 Template.scrum_master.helpers({
     room_users: function () {
+        console.log('checked');
         var users_ar = [];
         var users_obj = get_users();
 
@@ -35,10 +84,23 @@ Template.scrum_master.helpers({
         return PersistentSession.get('room');
     },
     voting_done: function () {
+        console.log('voting done')
         return get_percentage() == 100;
     },
     status_percentage: function () {
         return get_percentage();
+    },
+
+    average: function() {
+        users_obj = get_users();
+        if (finished_vote(users_obj)) {
+            console.log('Finished voting');
+            // get all votes
+            var votes = get_all_votes(users_obj);
+            // get the average & display
+            return workout_average_fib_number(votes);
+        }
+        return 10000000;
     }
 });
 
