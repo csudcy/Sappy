@@ -1,16 +1,28 @@
 <template name="scrum_master">
-    <div class="container">
+    <div class="scrum_master_container">
         <h1>{{room_name}}</h1>
-        <div>
+        <div class="card_table center">
         {{#each room_users}}
-            <img src="img/deck.png" class="card"/>
+            <!--<img src="img/deck.png" class="card"/>-->
+            <svg width="71" height="96" class="card">
+                <image x="0" y="0" width="71" height="96" xlink:href="img/{{#if vote}}deck.png{{else}}card_outline.png{{/if}}"/>
+                <rect x="1" y="75" width="69" height="18" fill="#8B0000" />
+                <text x="0" y="88" fill="white">
+                    <tspan x="36" text-anchor="middle">{{name}}</tspan>
+                </text>
+            </svg>
+            <!--<div class="user_card">-->
+                <!--<div class="user_name_on_card">{{name}}</div>-->
+                <!--<img src="img/{{#if vote}}deck.png{{else}}card_outline.png{{/if}}" class="card"/>-->
+            <!--</div>-->
             <!--<span class="glyphicon glyphicon-user {{#if vote}}green{{else}}red{{/if}}" aria-hidden="true"></span> {{name}} {{#if vote}}({{vote}}){{/if}}-->
         {{/each}}
         </div>
+        <br/>
         <div id="push"></div>
     </div>
     <div id="footer">
-        <div class="container">
+        <div>
             <div class="progress">
               <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar"
                    aria-valuenow="{{status_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{status_percentage}}%">

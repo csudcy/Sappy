@@ -15,4 +15,5 @@
     height: 100% !important;
     /* Negative indent footer by it's height */
     margin: 0 auto -60px;
+    padding-top: 0px !important;
 }
