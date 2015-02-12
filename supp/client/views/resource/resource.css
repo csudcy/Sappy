@@ -16,6 +16,7 @@
     text-align: center
 }
 
-.container {
-    padding-top: 50px;
+button.card_container {
+    font-size: 20px;
+    font-weight: bold;
 }

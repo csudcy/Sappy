@@ -84,13 +84,11 @@ Template.scrum_master.helpers({
         return PersistentSession.get('room');
     },
     voting_done: function () {
-        console.log('voting done')
         return get_percentage() == 100;
     },
     status_percentage: function () {
         return get_percentage();
     },
-
     average: function() {
         users_obj = get_users();
         if (finished_vote(users_obj)) {
@@ -101,6 +99,20 @@ Template.scrum_master.helpers({
             return workout_average_fib_number(votes);
         }
         return 10000000;
+    },
+    card_state: function(vote) {
+        if (get_percentage() == 100) {
+            // Voting is over; show the card
+            return 'card_front';
+        }
+
+        if (vote) {
+            // This player has voted
+            return 'card_back';
+        }
+
+        // Waiting for a vote
+        return 'card_empty';
     }
 });
 
