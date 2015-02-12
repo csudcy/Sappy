@@ -12,17 +12,19 @@ Template.resource.helpers({
         return PersistentSession.get('user');
     },
     numbers: function () {
-        return [0, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?', 'C'];
+        return [[0, 1, 2], [3, 5, 8], [13, 20, 40], [100, '?', 'C']];
     },
+    is_selected: function(val) {
+        users = Rooms.findOne({
+            _id: PersistentSession.get('room')
+        }).users;
 
+        return (users[PersistentSession.get('user')] === String(val));
+    }
 });
 
 Template.resource.events({
-    'click .number': function (event, template) {
-        // Sort out the classes
-        $('.number').removeClass('selected');
-        $(event.target).addClass('selected');
-
+    'click .number_button': function (event, template) {
         // work out which user to set the value for
         var set = {};
         set['users.' + PersistentSession.get('user')] =  $(event.target).val();
@@ -38,6 +40,6 @@ Template.resource.events({
         );
 
         // for debugging - shall remove later
-        print_rooms();
+        // print_rooms();
     }
 });

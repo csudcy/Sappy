@@ -1,8 +1,17 @@
 <template name="resource">
-    <h2> Sup {{user_name}}, you're now voting in the {{room_name}} room.</h2>
-    <div id="selectable">
+    <div class="resource_heading">
+        <h1 class="resource_heading"> Sup {{user_name}}, you're now voting in the {{room_name}} room.</h1>
+    </div>
+
+    <div class='container'>
         {{#each numbers}}
-          <button class="number" value={{this}}>{{this}}</button>
+            <div class="row">
+                {{#each this}}
+                    <div class="number_button_div col-xs-4">
+                        <button class="number_button btn-block  {{#if is_selected this}} selected {{/if}}" value={{this}}>{{this}}</button>
+                    </div>
+                {{/each}}
+            </div>
         {{/each}}
     </div>
 </template>

@@ -1,29 +1,33 @@
 
-.number {
-    font-size: 1.4em;
+.number_button {
+    font-size: 2em;
 
 }
-.number {
-    background: #F39814;
-    color: white;
-}
-#selectable {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 400px;
-}
-.number {
-    margin: 3px;
-    padding: 1px;
-    float: left;
-    width: 120px;
-    height: 80px;
-    font-size: 4em;
-    text-align: center;
+
+.number_button {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
 }
 
 .selected {
-    background-color: darkgrey;
+  color: #fff;
+  background-color: #337333;
+  border-color: #398439;
 }
 
+
+.resource_heading {
+    text-align: center
+}
+
+.container {
+    padding-top: 50px;
+}
+.row {
+    padding-top: 20px;
+
+}
+.number_button {
+    height: 200px
+}
