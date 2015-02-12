@@ -10,12 +10,10 @@ Template.scrum_master.helpers({
         var users_obj = get_users();
 
         for(var key in users_obj){
-            var user = {};
-
-            user['name'] = key;
-            user['vote'] = users_obj[key];
-
-            users_ar.push(user);
+            users_ar.push({
+                'name': key,
+                'vote': users_obj[key]
+            });
         }
 
         return users_ar;
