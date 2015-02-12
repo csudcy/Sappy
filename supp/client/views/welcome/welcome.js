@@ -12,6 +12,13 @@ Template.welcome.events({
     'click .user_type': function (e) {
         PersistentSession.set('user_type', $(e.target).data('user_type'));
     },
+    'click .room_clear': function (e) {
+        var count = 0;
+        Rooms.find().forEach(function(room) {
+            count += Rooms.remove({_id: room._id});
+        });
+        alert('Removed '+count+' room(s)!');
+    },
     'click .go': function () {
         var user_type = PersistentSession.get('user_type'),
             room = $('.welcome_container [name=room]').val(),

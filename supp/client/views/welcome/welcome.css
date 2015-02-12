@@ -9,23 +9,12 @@
     height: 250px;
 }
 
-.welcome_container * {
+.welcome_container button {
     margin-bottom: 10px;
 }
 
-.welcome_container button {
-    padding: 5px;
-    width: 150px;
-    height: 60px;
-    font-size: 18px;
-    border-radius: 15px;
-}
-
-.welcome_container button.selected {
-    background-color: darkgrey;
-}
-
-.welcome_container input {
-    width: 200px;
-    padding: 5px;
+.room_clear {
+    right: 0px;
+    bottom: 0px;
+    position: absolute;
 }
