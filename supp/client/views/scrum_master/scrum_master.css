@@ -17,10 +17,6 @@ h1 {
     margin-top: 10px;
 }
 
-.user_card {
-    float: left;
-}
-
 .card_table {
     width: 265px;
     height: 454px;
@@ -31,18 +27,6 @@ h1 {
     padding-bottom: 10px;
     margin-left: 10px;
     overflow: hidden;
-}
-
-.user_name_on_card{
-    float: left;
-    height: 10px;
-    width: 100%;
-    position: relative;
-    top: 10px;
-    left: 5px;
-    z-index: 100;
-    text-align: center;
-    background-color: darkred;
 }
 
 #push, #footer {
@@ -60,3 +44,33 @@ h1 {
     /* Negative indent footer by it's height */
     margin: 0 auto -80px;
 }
+
+/* Trying to do cards without SVG */
+/*
+.card_container {
+    display: inline-block;
+    border: 1px solid white;
+    border-radius: 3px;
+    width: 70px;
+    height: 95px;
+}
+.card_empty {
+}
+.card_back {
+    background: url('img/deck.png');
+    background-size: 100% 100%;
+}
+.card_front {
+    background: white;
+}
+
+.card_name {
+    width: 100%;
+    position: relative;
+    bottom: 10px;
+    text-align: center;
+    background-color: darkred;
+    color: white;
+    display: inline-block;
+}
+*/
