@@ -89,8 +89,8 @@ Template.welcome.events({
     },
     'click .go': function () {
         var user_type = PersistentSession.get('user_type'),
-            room_ele = $('.welcome_container [name=room]').val(),
-            user_ele = $('.welcome_container [name=user]').val();
+            room = $('.welcome_container [name=room]').val(),
+            user = $('.welcome_container [name=user]').val();
 
         // Validate
         $('.has-error').removeClass('has-error');
