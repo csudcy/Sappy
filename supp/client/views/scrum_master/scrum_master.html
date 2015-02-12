@@ -1,10 +1,23 @@
 <template name="scrum_master">
     <div class="container">
         <div class="page-header">
-            <h1>Scrum masta'</h1>
+            <h1>Sup Scrum Masta' J, this is room {{room_name}}.</h1>
         </div>
-        <button class="reset_votes btn btn-primary">Reset users</button>
-        <p>{{room_users}} in room: {{room_name}}</p>
-        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div>
+        {{#each room_users}}
+            <p>
+                <span class="glyphicon glyphicon-user {{#if vote}}green{{else}}red{{/if}}" aria-hidden="true"></span> {{name}} {{#if vote}}({{vote}}){{/if}}
+            </p>
+        {{/each}}
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar"
+               aria-valuenow="{{status_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{status_percentage}}%">
+          </div>
+        </div>
+        <div>
+            <button class="reset_votes btn btn-danger">Reset users</button>
+            <button class="clear_room btn btn-danger">Clear room</button>
+        </div>
     </div>
 </template>
