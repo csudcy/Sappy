@@ -6,11 +6,17 @@
     font-weight: bold;
     text-align: center;
     width: 330px;
-    height: 250px;
+    min-height: 250px;
 }
 
 .welcome_container button {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    width: 47%;
+}
+
+.welcome_container .select2 {
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 .room_clear {
