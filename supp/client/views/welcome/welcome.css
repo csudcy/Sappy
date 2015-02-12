@@ -9,7 +9,7 @@
     height: 250px;
 }
 
-.welcome_container * {
+.welcome_container button {
     margin-bottom: 10px;
 }
 

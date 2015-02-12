@@ -3,7 +3,7 @@
         Supp, fool!
     </h1>
 
-    <div class="vcenter hcenter welcome_container">
+    <div class="form-group vcenter hcenter welcome_container">
         <div>
             What are you?
         </div>
@@ -13,9 +13,9 @@
         <div>
             {{#if user_type}}
                 {{#if user_type 'resource'}}
-                    <input type="text" name="user" placeholder="Who are you?" value="{{persistent_session 'user'}}"/><br/>
+                    <input type="text" class="form-control" name="user" placeholder="Who are you?" value="{{persistent_session 'user'}}"/><br/>
                 {{/if}}
-                <input type="text" name="room" placeholder="What room do you want?" value="{{persistent_session 'room'}}"/><br/>
+                <input type="text" class="form-control" name="room" placeholder="What room do you want?" value="{{persistent_session 'room'}}"/><br/>
                 <button class="go btn btn-lg btn-success">Join</button>
             {{/if}}
         </div>
