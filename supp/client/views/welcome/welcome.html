@@ -13,9 +13,9 @@
         <div>
             {{#if user_type}}
                 {{#if user_type 'resource'}}
-                    <input type="text" name="name" placeholder="Who are you?"/><br/>
+                    <input type="text" name="user" placeholder="Who are you?" value="{{persistent_session 'user'}}"/><br/>
                 {{/if}}
-                <input type="text" name="room" placeholder="What room do you want?"/><br/>
+                <input type="text" name="room" placeholder="What room do you want?" value="{{persistent_session 'room'}}"/><br/>
                 <button class="go">Join</button>
             {{/if}}
         </div>

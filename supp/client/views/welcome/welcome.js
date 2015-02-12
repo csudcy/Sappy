@@ -15,23 +15,48 @@ Template.welcome.events({
     'click .go': function () {
         var user_type = PersistentSession.get('user_type'),
             room = $('.welcome_container [name=room]').val(),
-            name = $('.welcome_container [name=name]').val();
+            user = $('.welcome_container [name=user]').val();
 
         // Save details to the persistent session
         PersistentSession.set('room', room);
-        PersistentSession.set('name', name);
+        if (user_type === 'resource') {
+            PersistentSession.set('user', user);
+        }
+
+        // Make sure the room exists
+        Rooms.upsert(
+            // Selector
+            {
+                _id: room
+            },
+            // Modifier
+            {
+                // If we've inserted the room, make sure it has a users object
+                $setOnInsert: {
+                    users: {}
+                }
+            }
+        );
 
         // Decide what to do
         if (user_type === 'resource') {
-            // Do some db stuff
-            console.log('Resource "'+name+'" joining "'+room+'"!')
+            // Make sure the user exists in the room
+            var set = {};
+            set['users.'+user] = null;
+            Rooms.update(
+                // Selector
+                {
+                    _id: room
+                },
+                // Modifier
+                {
+                    $set: set
+                }
+            );
 
             // Show the next template
             show_template(Template.resource);
         } else {
-            // Do some db stuff
-            console.log('Master joining "'+room+'"!')
-
             // Show the next template
             show_template(Template.scrum_master);
         }
