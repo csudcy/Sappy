@@ -4,21 +4,30 @@
     </h1>
 
     <div class="form-group vcenter hcenter welcome_container">
-        <div>
-            What are you?
-        </div>
         <button class="user_type btn btn-lg btn-primary {{#if user_type 'scrum_master'}}active{{/if}}" data-user_type="scrum_master">Scrum Masta'</button>
         <button class="user_type btn btn-lg btn-primary {{#if user_type 'resource'}}active{{/if}}" data-user_type="resource">Re$ource</button>
 
-        <div>
-            {{#if user_type}}
-                {{#if user_type 'resource'}}
-                    <input type="text" class="form-control" name="user" placeholder="Who are you?" value="{{persistent_session 'user'}}"/><br/>
-                {{/if}}
-                <input type="text" class="form-control" name="room" placeholder="What room do you want?" value="{{persistent_session 'room'}}"/><br/>
+        {{#if user_type 'resource'}}
+            {{#if rooms}}
+                <input type="text" class="form-control" name="user" placeholder="Who are you?" value="{{persistent_session 'user'}}"/><br/>
+                <select class="form-control" name="room" placeholder="What room do you want?" value="{{persistent_session 'room'}}">
+                    {{#each rooms}}
+                        <option {{room_selected _id}}>{{_id}}</option>
+                    {{/each}}
+                </select>
                 <button class="go btn btn-lg btn-success">Join</button>
+            {{else}}
+                <span class="help-block">
+                    Sorry, there are no rooms yet!<br/>
+                    A scrum master must create a room before you can join.
+                </span>
             {{/if}}
-        </div>
+        {{/if}}
+
+        {{#if user_type 'scrum_master'}}
+            <input type="text" class="form-control" name="room" placeholder="What room do you want?" value="{{persistent_session 'room'}}"/><br/>
+            <button class="go btn btn-lg btn-success">Join</button>
+        {{/if}}
     </div>
 
     <button class="btn btn-danger room_clear">
