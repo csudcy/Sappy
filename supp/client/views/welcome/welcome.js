@@ -19,7 +19,9 @@ Template.welcome.events({
 
         // Save details to the persistent session
         PersistentSession.set('room', room);
-        PersistentSession.set('name', name);
+        if (user_type === 'resource') {
+            PersistentSession.set('name', name);
+        }
 
         // Decide what to do
         if (user_type === 'resource') {
