@@ -29,3 +29,10 @@
     width: 200px;
     padding: 5px;
 }
+
+.room_clear {
+    right: 0px;
+    bottom: 0px;
+    position: absolute;
+    background-color: #fcc;
+}
