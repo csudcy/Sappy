@@ -1,41 +1,37 @@
-function get_users(room_name) {
-    return Rooms.find(
-        {name: room_name}
-    );
+function get_users() {
+    return Rooms.findOne({
+        _id: PersistentSession.get('room')
+    }).users;
 }
 
-Template.hello.helpers({
-    counter: function () {
-        return Clicks.find().count();
-    },
+Template.scrum_master.helpers({
     room_users: function () {
-        return get_users();
+        var users = get_users();
+        console.log(users);
+        return JSON.stringify(users);
+    },
+    room_name: function () {
+        return PersistentSession.get('room');
     }
-//    last_click_date: function() {
-//        var last_click = get_last_click();
-//        if (last_click === undefined) {
-//            return 'never';
-//        }
-//        return last_click.timestamp.toLocaleDateString();
-//    },
-//    last_click_time: function() {
-//        var last_click = get_last_click();
-//        if (last_click === undefined) {
-//            return 'never';
-//        }
-//        return last_click.timestamp.toLocaleTimeString();
-//    }
 });
 
-Template.hello.events({
-    'click button#load_users': function () {
+Template.scrum_master.events({
+    'click .reset_votes': function () {
         // insert a click record when the button is clicked
-        alert('ji');
-    },
-    'click button': function () {
-        // insert a click record when the button is clicked
-        Clicks.insert({
-            timestamp: new Date()
+        var set = {};
+        console.log("Reset!");
+        Object.keys(get_users()).forEach(function(u){
+            set['users.' + u] =  null;
         });
+
+        //  update the user's value in the room
+        Rooms.update(
+            {
+                '_id': PersistentSession.get('room'),
+            },
+            {
+                $set: set
+            }
+        );
     }
 });
