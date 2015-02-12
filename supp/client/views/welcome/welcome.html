@@ -4,12 +4,20 @@
     </h1>
 
     <div class="vcenter hcenter welcome_container">
-        <input type="text" name="who" placeholder="Who are you?"/><br/>
-        <input type="text" name="session" placeholder="What session are you here for?"/><br/>
         <div>
-            What would you like to do?
+            What are you?
         </div>
-        <button class="lead">Lead</button>
-        <button class="participate">Participate</button>
+        <button class="user_type {{#if user_type 'scrum_master'}}selected{{/if}}" data-user_type="scrum_master">Scrum Masta'</button>
+        <button class="user_type {{#if user_type 'resource'}}selected{{/if}}" data-user_type="resource">Re$ource</button>
+
+        <div>
+            {{#if user_type}}
+                <input type="text" name="session" placeholder="What session are you here for?"/><br/>
+                {{#if user_type 'resource'}}
+                    <input type="text" name="who" placeholder="Who are you?"/><br/>
+                {{/if}}
+                <button class="go">Join</button>
+            {{/if}}
+        </div>
     </div>
 </template>

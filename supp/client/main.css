@@ -6,8 +6,8 @@
 }
 
 .vcenter {
-    display: inline-block;;
-    margin: 0 0 50% 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hcenter {
