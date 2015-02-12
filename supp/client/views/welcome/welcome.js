@@ -13,9 +13,14 @@ Template.welcome.events({
         Session.set('user_type', $(e.target).data('user_type'));
     },
     'click .go': function () {
-        if (Session.get('user_type') === 'resource') {
+        var user_type = Session.get('user_type'),
+            room = $('.welcome_container [name=room]').val(),
+            name = $('.welcome_container [name=name]').val();
+        if (user_type === 'resource') {
+            console.log('Resource "'+name+'" joining "'+room+'"!')
             show_template(Template.resource);
         } else {
+            console.log('Master joining "'+room+'"!')
             show_template(Template.scrum_master);
         }
     }

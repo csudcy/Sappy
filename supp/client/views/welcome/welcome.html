@@ -12,10 +12,10 @@
 
         <div>
             {{#if user_type}}
-                <input type="text" name="session" placeholder="What session are you here for?"/><br/>
                 {{#if user_type 'resource'}}
-                    <input type="text" name="who" placeholder="Who are you?"/><br/>
+                    <input type="text" name="name" placeholder="Who are you?"/><br/>
                 {{/if}}
+                <input type="text" name="room" placeholder="What room do you want?"/><br/>
                 <button class="go">Join</button>
             {{/if}}
         </div>
