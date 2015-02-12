@@ -29,8 +29,7 @@
 
         {{#if user_type 'scrum_master'}}
             <span>
-                <select class="form-control" name="room">
-                    <option value="">Select an existing room</option>
+                <select class="form-control" name="room" data-tags="true">
                     {{#each rooms}}
                         <option {{room_selected _id}}>{{_id}}</option>
                     {{/each}}

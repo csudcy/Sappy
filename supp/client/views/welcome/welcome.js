@@ -67,7 +67,6 @@ Template.welcome.helpers({
         Meteor.defer(function () {
             $('select[name=room]').select2({
                 placeholder: 'What room?',
-                tags: true,
                 allowClear: true
             });
         });
