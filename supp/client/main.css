@@ -1,0 +1,15 @@
+/* CSS declarations go here */
+
+.dev_buttons {
+    background: #fcc;
+    padding: 5px;
+}
+
+.vcenter {
+    display: inline-block;;
+    margin: 0 0 50% 50%;
+}
+
+.hcenter {
+    top: 45%;
+}
