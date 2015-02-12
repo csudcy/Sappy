@@ -7,8 +7,8 @@
         <div>
             What are you?
         </div>
-        <button class="user_type {{#if user_type 'scrum_master'}}selected{{/if}}" data-user_type="scrum_master">Scrum Masta'</button>
-        <button class="user_type {{#if user_type 'resource'}}selected{{/if}}" data-user_type="resource">Re$ource</button>
+        <button class="user_type btn btn-lg btn-primary {{#if user_type 'scrum_master'}}active{{/if}}" data-user_type="scrum_master">Scrum Masta'</button>
+        <button class="user_type btn btn-lg btn-primary {{#if user_type 'resource'}}active{{/if}}" data-user_type="resource">Re$ource</button>
 
         <div>
             {{#if user_type}}
@@ -16,12 +16,12 @@
                     <input type="text" name="user" placeholder="Who are you?" value="{{persistent_session 'user'}}"/><br/>
                 {{/if}}
                 <input type="text" name="room" placeholder="What room do you want?" value="{{persistent_session 'room'}}"/><br/>
-                <button class="go btn btn-success">Join</button>
+                <button class="go btn btn-lg btn-success">Join</button>
             {{/if}}
         </div>
     </div>
 
-    <button class="room_clear">
+    <button class="btn btn-danger room_clear">
         Clear All Rooms
     </button>
 </template>
