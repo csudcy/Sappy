@@ -9,12 +9,12 @@
 
         {{#if user_type 'resource'}}
             {{#if rooms}}
-                <input type="text" class="form-control" name="user" placeholder="Who are you?" value="{{persistent_session 'user'}}"/><br/>
-                <select class="form-control" name="room" placeholder="What room do you want?" value="{{persistent_session 'room'}}">
+                <select class="form-control" name="room">
                     {{#each rooms}}
                         <option {{room_selected _id}}>{{_id}}</option>
                     {{/each}}
                 </select>
+                <input type="text" class="form-control" name="user" placeholder="Who are you?" value="{{persistent_session 'user'}}"/><br/>
                 <button class="go btn btn-lg btn-success">Join</button>
             {{else}}
                 <span class="help-block">
@@ -25,7 +25,15 @@
         {{/if}}
 
         {{#if user_type 'scrum_master'}}
-            <input type="text" class="form-control" name="room" placeholder="What room do you want?" value="{{persistent_session 'room'}}"/><br/>
+            <select class="form-control" name="room">
+                <option value="">Select an existing room</option>
+                {{#each rooms}}
+                    <option {{room_selected _id}}>{{_id}}</option>
+                {{/each}}
+            </select>
+
+            <input type="text" class="form-control" name="room" placeholder="Or create a room"/><br/>
+
             <button class="go btn btn-lg btn-success">Join</button>
         {{/if}}
     </div>
