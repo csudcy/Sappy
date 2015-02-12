@@ -1,8 +1,8 @@
 Template.welcome.events({
-    'click .lead': function () {
-        show_template(Template.leader_vote_before);
+    'click .scrum_master': function () {
+        show_template(Template.scrum_master);
     },
-    'click .participate': function () {
-        show_template(Template.participant_vote_before);
+    'click .resource': function () {
+        show_template(Template.resource);
     }
 });
