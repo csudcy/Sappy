@@ -4,8 +4,8 @@
     </h1>
 
     <div class="form-group vcenter hcenter welcome_container">
-        <button class="user_type btn btn-primary {{#if user_type 'scrum_master'}}active{{/if}}" data-user_type="scrum_master">Scrum Masta'</button>
         <button class="user_type btn btn-primary {{#if user_type 'resource'}}active{{/if}}" data-user_type="resource">Re$ource</button>
+        <button class="user_type btn btn-primary {{#if user_type 'scrum_master'}}active{{/if}}" data-user_type="scrum_master">Scrum Masta'</button>
 
         {{#if user_type 'resource'}}
             {{#if has_rooms}}
