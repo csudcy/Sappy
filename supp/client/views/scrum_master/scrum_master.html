@@ -2,30 +2,30 @@
     <div class="scrum_master_container">
         <h1>{{room_name}}</h1>
         <div class="card_table center">
-        {{#each room_users}}
+            {{#each room_users}}
 
-            <svg width="71" height="96" class="card">
-                {{#if voting_done}}
-                    <image x="0" y="0" width="71" height="96" xlink:href="img/card_white_back.png"/>
-                    <text x="0" y="60" fill="black">
-                        <tspan x="35" text-anchor="middle" font-size="42">{{vote}}</tspan>
+                <svg width="71" height="96" class="card">
+                    {{#if voting_done}}
+                        <image x="0" y="0" width="71" height="96" xlink:href="img/card_white_back.png"/>
+                        <text x="0" y="60" fill="black">
+                            <tspan x="35" text-anchor="middle" font-size="42">{{vote}}</tspan>
+                        </text>
+                    {{else}}
+                        <image x="0" y="0" width="71" height="96" xlink:href="img/{{#if vote}}deck.png{{else}}card_outline.png{{/if}}"/>
+                    {{/if}}
+                    <rect x="1" y="75" width="69" height="18" fill="#8B0000" />
+                    <text x="0" y="88" fill="white">
+                        <tspan x="35" text-anchor="middle">{{name}}</tspan>
                     </text>
-                {{else}}
-                    <image x="0" y="0" width="71" height="96" xlink:href="img/{{#if vote}}deck.png{{else}}card_outline.png{{/if}}"/>
-                {{/if}}
-                <rect x="1" y="75" width="69" height="18" fill="#8B0000" />
-                <text x="0" y="88" fill="white">
-                    <tspan x="35" text-anchor="middle">{{name}}</tspan>
-                </text>
-            </svg>
+                </svg>
 
-            <!--Trying to do cards without SVG-->
-            <!--
-            <span class="card_container card_back">
-                <span class="card_name">{{name}}</span>
-            </span>
-            -->
-        {{/each}}
+                <!--Trying to do cards without SVG-->
+                <!--
+                <span class="card_container card_back">
+                    <span class="card_name">{{name}}</span>
+                </span>
+                -->
+            {{/each}}
         </div>
         <br/>
         <div id="push"></div>

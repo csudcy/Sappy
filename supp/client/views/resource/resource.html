@@ -3,15 +3,9 @@
         <h1 class="resource_heading"> Sup {{user_name}}, you're now voting in the {{room_name}} room.</h1>
     </div>
 
-    <div class='container'>
+    <div class="card_table center">
         {{#each numbers}}
-            <div class="row">
-                {{#each this}}
-                    <div class="number_button_div col-xs-4">
-                        <button class="number_button btn-block  {{#if is_selected this}} selected {{/if}}" value={{this}}>{{this}}</button>
-                    </div>
-                {{/each}}
-            </div>
+            <button class="card number_button btn {{#if is_selected this}} btn-info {{else}} btn-default {{/if}}" value="{{this}}">{{this}}</button>
         {{/each}}
     </div>
 </template>

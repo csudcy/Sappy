@@ -12,7 +12,7 @@ Template.resource.helpers({
         return PersistentSession.get('user');
     },
     numbers: function () {
-        return [[0, 1, 2], [3, 5, 8], [13, 20, 40], [100, '?', 'C']];
+        return [0, 1, 2,3, 5, 8,13, 20, 40,100, '?', 'C'];
     },
     is_selected: function(val) {
         users = Rooms.findOne({

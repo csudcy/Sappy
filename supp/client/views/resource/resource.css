@@ -1,21 +1,12 @@
-
 .number_button {
+    display: inline-block;
     font-size: 2em;
-
+    background-color: white;
+    color: black;
+    width: 71px;
+    height: 96px;
+    border-radius: 5px;
 }
-
-.number_button {
-    color: #fff;
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-}
-
-.selected {
-  color: #fff;
-  background-color: #337333;
-  border-color: #398439;
-}
-
 
 .resource_heading {
     text-align: center
@@ -23,11 +14,4 @@
 
 .container {
     padding-top: 50px;
-}
-.row {
-    padding-top: 20px;
-
-}
-.number_button {
-    height: 200px
 }
