@@ -52,6 +52,9 @@ Template.welcome.helpers({
         }
         return PersistentSession.get('user_type');
     },
+    has_rooms: function() {
+        return Rooms.find().count() > 0;
+    },
     rooms: function() {
         return Rooms.find();
     },
@@ -86,9 +89,27 @@ Template.welcome.events({
     },
     'click .go': function () {
         var user_type = PersistentSession.get('user_type'),
-            room = $('.welcome_container [name=room]').val(),
-            user = $('.welcome_container [name=user]').val();
+            room_ele = $('.welcome_container [name=room]'),
+            room = room_ele.val(),
+            user_ele = $('.welcome_container [name=user]'),
+            user = user_ele.val();
 
-        join(user_type, room, user);
+        // Validate
+        $('.has-error').removeClass('has-error');
+        var error = false;
+        if (room === undefined || room === null) {
+            error = true;
+        }
+        if (user_type == 'resource') {
+            if (user === undefined || user === null || user === '') {
+                error = true;
+            }
+        }
+
+        if (error) {
+            alert('You must fill in the form!');
+        } else {
+            join(user_type, room, user);
+        }
     }
 });
