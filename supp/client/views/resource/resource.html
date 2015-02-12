@@ -1,3 +1,8 @@
 <template name="resource">
-    <h2>template:resource</h2>
+    <h2> Sup {{user_name}}, you're now voting in the {{room_name}} room.</h2>
+    <div id="selectable">
+        {{#each numbers}}
+          <button class="number" value={{this}}>{{this}}</button>
+        {{/each}}
+    </div>
 </template>

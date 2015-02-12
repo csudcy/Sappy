@@ -1,0 +1,29 @@
+
+.number {
+    font-size: 1.4em;
+
+}
+.number {
+    background: #F39814;
+    color: white;
+}
+#selectable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 400px;
+}
+.number {
+    margin: 3px;
+    padding: 1px;
+    float: left;
+    width: 120px;
+    height: 80px;
+    font-size: 4em;
+    text-align: center;
+}
+
+.selected {
+    background-color: darkgrey;
+}
+
