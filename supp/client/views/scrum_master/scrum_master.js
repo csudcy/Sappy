@@ -4,6 +4,19 @@ function get_users() {
     }).users;
 }
 
+function get_percentage() {
+    var users_obj = get_users();
+    var not_completed = 0;
+    for(var key in users_obj){
+        if (users_obj[key] === null){
+            not_completed++;
+        }
+    }
+    var result = (Object.keys(users_obj).length - not_completed) * 100 / Object.keys(users_obj).length;
+    console.log(result);
+    return result
+}
+
 Template.scrum_master.helpers({
     room_users: function () {
         var users_ar = [];
@@ -21,17 +34,11 @@ Template.scrum_master.helpers({
     room_name: function () {
         return PersistentSession.get('room');
     },
+    voting_done: function () {
+        return get_percentage() == 100;
+    },
     status_percentage: function () {
-        var users_obj = get_users();
-        var not_completed = 0;
-        for(var key in users_obj){
-            if (users_obj[key] === null){
-                not_completed++;
-            }
-        }
-        var result = (Object.keys(users_obj).length - not_completed) * 100 / Object.keys(users_obj).length;
-        console.log(result);
-        return result;
+        return get_percentage();
     }
 });
 
