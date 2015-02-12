@@ -5,6 +5,10 @@ show_template = function(template) {
     UI.render(template, content.get(0));
 }
 
+// This is a global variable
+PersistentSession = new PersistentSessionClass();
+
+
 UI.body.events({
     'click .show_template': function(e) {
         var template_name = $(e.target).data('template'),
