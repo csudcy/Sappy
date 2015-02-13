@@ -13,7 +13,6 @@ function get_percentage() {
         }
     }
     var result = (Object.keys(users_obj).length - not_completed) * 100 / Object.keys(users_obj).length;
-    console.log(result);
     return result;
 }
 
@@ -45,9 +44,7 @@ function get_fib_numbers() {
 
 function get_average_number(votes) {
     var sum = 0;
-    console.log(votes)
     for (var vote in votes) {
-        console.log(votes[vote]);
         sum += votes[vote];
     }
     return sum / votes.length;
@@ -108,7 +105,6 @@ function is_extreme_vote(users_obj, vote) {
 
 Template.scrum_master.helpers({
     room_users: function () {
-        console.log('checked');
         var users_ar = [];
         var users_obj = get_users();
 
@@ -133,7 +129,6 @@ Template.scrum_master.helpers({
     average: function() {
         users_obj = get_users();
         if (finished_vote(users_obj)) {
-            console.log('Finished voting');
             // get all votes
             var votes = get_all_votes(users_obj);
             // get the average & display
@@ -153,7 +148,6 @@ Template.scrum_master.helpers({
             if (is_extreme_vote(get_users(), vote)) {
                 classes += '  highlight_extreme_vote';
             }
-            console.log(classes)
             return classes;
         }
 
@@ -171,7 +165,6 @@ Template.scrum_master.events({
     'click .reset_votes': function () {
         // insert a click record when the button is clicked
         var set = {};
-        console.log("Reset!");
         Object.keys(get_users()).forEach(function(u){
             set['users.' + u] =  null;
         });
