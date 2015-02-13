@@ -74,7 +74,8 @@ function is_extreme_vote(users_obj, vote) {
     var votes = get_all_votes(users_obj),
         avg_fib = workout_average_fib_number(votes),
         fibs = get_fib_numbers(),
-        avg_fib_position = get_average_position(avg_fib, fibs),
+        // I don't know why but apparently this comes back as a string
+        avg_fib_position = parseInt(get_average_position(avg_fib, fibs), 10),
         lower_bound = get_lower_bound(avg_fib_position, fibs),
         upper_bound = get_upper_bound(avg_fib_position, fibs);
 
