@@ -1,29 +1,8 @@
-.red {
-    color: red;
-}
-
-.green {
-    color: green;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-
-#push, #footer {
-    height: 80px;
-}
-
 #footer {
+    height: 80px;
     background-color: #f5f5f5;
-}
-
-.scrum_master_container {
-    min-height: 100%;
-    height: auto !important;
-    height: 100% !important;
-    /* Negative indent footer by it's height */
-    margin: 0 auto -80px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
 }

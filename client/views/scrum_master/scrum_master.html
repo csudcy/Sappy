@@ -11,24 +11,20 @@
                 </span>
             {{/each}}
         </div>
-        <br/>
-        <div id="push"></div>
     </div>
     <div id="footer">
+        <div class="progress">
+            {{#if voting_done}}
+                <div> Average: {{average}} </div>
+            {{else}}
+                <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar"
+                       aria-valuenow="{{status_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{status_percentage}}%">
+                </div>
+            {{/if}}
+        </div>
         <div>
-            <div class="progress">
-                {{#if voting_done}}
-                    <div> Average: {{average}} </div>
-                {{else}}
-                    <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar"
-                           aria-valuenow="{{status_percentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{status_percentage}}%">
-                    </div>
-                {{/if}}
-            </div>
-            <div>
-                <button class="reset_votes btn btn-danger">Reset votes</button>
-                <button class="clear_room btn btn-danger">Clear room</button>
-            </div>
+            <button class="reset_votes btn btn-danger">Reset votes</button>
+            <button class="clear_room btn btn-danger">Clear room</button>
         </div>
     </div>
 </template>
