@@ -1,7 +1,7 @@
 <template name="scrum_master">
     <div class="scrum_master_container">
         <h1>{{room_name}}</h1>
-        <div class="card_table center">
+        <div>
             {{#each room_users}}
                 <span class="card card_container {{card_state vote}}">
                     {{#if voting_done}}

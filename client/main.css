@@ -1,4 +1,15 @@
-/* CSS declarations go here */
+body {
+    background: -webkit-radial-gradient(#177715, #0E4905); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#177715, #0E4905); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#177715, #0E4905); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#177715, #0E4905); /* Standard syntax */
+}
+
+h1 {
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
 .vcenter {
     margin-left: auto;
