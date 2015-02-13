@@ -97,13 +97,15 @@ function join(user_type, room, user) {
     // Decide what to do
     if (user_type === 'resource') {
         // Make sure the user exists in the room
+        var filter = {
+            _id: room
+        };
+        filter['users.'+user] = {$exists: false};
         var set = {};
         set['users.'+user] = null;
         Rooms.update(
             // Selector
-            {
-                _id: room
-            },
+            filter,
             // Modifier
             {
                 $set: set
