@@ -1,0 +1,55 @@
+.card_table {
+    width: 265px;
+    height: 454px;
+    background: -webkit-radial-gradient(#177715, #0E4905); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#177715, #0E4905); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#177715, #0E4905); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#177715, #0E4905); /* Standard syntax */
+    padding: 5px;
+    margin-left: 10px;
+    overflow: hidden;
+}
+
+.card_container {
+    margin: 5px;
+    display: inline-block;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 70px;
+    height: 95px;
+    position: relative;
+}
+
+.card_empty {
+}
+.card_back {
+    background: url('img/deck.png');
+    background-size: 100% 100%;
+}
+.card_front {
+    background: white;
+}
+
+.card_text {
+    width: 100%;
+    position: absolute;
+    top: 10px;
+    text-align: center;
+    color: black;
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.card_name {
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    background-color: darkred;
+    color: white;
+    display: inline-block;
+    overflow: hidden;
+    height: 20px;
+    word-break: break-all;
+}

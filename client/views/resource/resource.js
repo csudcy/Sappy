@@ -24,7 +24,7 @@ Template.resource.helpers({
 });
 
 Template.resource.events({
-    'click .number_button': function (event, template) {
+    'click .card_container': function (event, template) {
         // work out which user to set the value for
         var set = {};
         set['users.' + PersistentSession.get('user')] =  $(event.target).val();

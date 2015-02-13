@@ -1,0 +1,19 @@
+/* CSS declarations go here */
+
+.vcenter {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hcenter {
+    top: 45%;
+}
+
+.content {
+    min-height: 100%;
+    height: auto !important;
+    height: 100% !important;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -60px;
+    padding-top: 0px !important;
+}
