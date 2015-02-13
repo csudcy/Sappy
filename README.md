@@ -33,6 +33,7 @@ Public UI:
 
 Private UI:
 * Make it look better on phones!
+* Dont remove users vote on room join
 * Don't allow card change after vote is ended?
 * Drop back to welcome screen when removed from a room
 
