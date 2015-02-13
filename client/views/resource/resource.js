@@ -25,6 +25,13 @@ Template.resource.helpers({
 
 Template.resource.events({
     'click .card_container': function (event, template) {
+        // Check we can still vote
+        var users_obj = get_users();
+        if (finished_vote(users_obj)) {
+            alert('Voting is closed!');
+            return;
+        }
+
         // work out which user to set the value for
         var set = {};
         set['users.' + PersistentSession.get('user')] =  $(event.target).val();

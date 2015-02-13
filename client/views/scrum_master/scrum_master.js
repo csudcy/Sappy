@@ -1,8 +1,3 @@
-function get_users() {
-    return Rooms.findOne({
-        _id: PersistentSession.get('room')
-    }).users;
-}
 
 function get_percentage() {
     var users_obj = get_users();
@@ -14,18 +9,6 @@ function get_percentage() {
     }
     var result = (Object.keys(users_obj).length - not_completed) * 100 / Object.keys(users_obj).length;
     return result;
-}
-
-function finished_vote(users_obj) {
-    if (users_obj) {
-        var total_people = Object.keys(users_obj).length;
-        for(var key in users_obj) {
-            if (users_obj[key] !== null) {
-                total_people--;
-            }
-        }
-        return total_people === 0;
-    }
 }
 
 function get_all_votes(users_obj) {
@@ -121,13 +104,14 @@ Template.scrum_master.helpers({
         return PersistentSession.get('room');
     },
     voting_done: function () {
-        return get_percentage() == 100;
+        var users_obj = get_users();
+        return finished_vote(users_obj);
     },
     status_percentage: function () {
         return get_percentage();
     },
     average: function() {
-        users_obj = get_users();
+        var users_obj = get_users();
         if (finished_vote(users_obj)) {
             // get all votes
             var votes = get_all_votes(users_obj);
@@ -136,7 +120,8 @@ Template.scrum_master.helpers({
         }
     },
     card_state: function(vote) {
-        if (get_percentage() == 100) {
+        var users_obj = get_users();
+        if (finished_vote(users_obj)) {
             // Voting is over; show the card
             var classes = 'card_front';
 

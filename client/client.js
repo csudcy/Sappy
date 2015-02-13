@@ -8,11 +8,20 @@ show_template = function(template) {
 // This is a global variable
 PersistentSession = new PersistentSessionClass();
 
+get_users = function() {
+    return Rooms.findOne({
+        _id: PersistentSession.get('room')
+    }).users;
+}
 
-UI.body.events({
-    'click .show_template': function(e) {
-        var template_name = $(e.target).data('template'),
-            template = Template[template_name];
-        show_template(template);
+finished_vote = function(users_obj) {
+    if (users_obj) {
+        var total_people = Object.keys(users_obj).length;
+        for(var key in users_obj) {
+            if (users_obj[key] !== null) {
+                total_people--;
+            }
+        }
+        return total_people === 0;
     }
-});
+}
