@@ -14,7 +14,7 @@ function get_percentage() {
 function get_all_votes(users_obj) {
     var votes = [];
     for(var key in users_obj) {
-        if (users_obj[key] !== 'C' || users_obj[key] === '?') {
+        if (users_obj[key] !== 'C' && users_obj[key] !== '?') {
             votes.push(parseInt(users_obj[key], 10));
         }
     }
