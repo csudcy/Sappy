@@ -18,6 +18,14 @@
     background: white;
 }
 
+.highlight_non_vote {
+    background: #ccf;
+}
+
+.highlight_extreme_vote {
+    background: #fcc;
+}
+
 .card_text {
     width: 100%;
     position: absolute;
