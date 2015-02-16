@@ -8,10 +8,14 @@ show_template = function(template) {
 // This is a global variable
 PersistentSession = new PersistentSessionClass();
 
-get_users = function() {
+get_room = function() {
     return Rooms.findOne({
         _id: PersistentSession.get('room')
-    }).users;
+    });
+};
+
+get_users = function() {
+    return get_room().users;
 };
 
 finished_vote = function(users_obj) {
@@ -24,4 +28,14 @@ finished_vote = function(users_obj) {
         }
         return total_people === 0;
     }
+};
+
+get_all_votes = function(users_obj) {
+    var votes = [];
+    for(var key in users_obj) {
+        if (users_obj[key] !== 'C' && users_obj[key] !== '?') {
+            votes.push(parseInt(users_obj[key], 10));
+        }
+    }
+    return votes;
 };
