@@ -21,10 +21,6 @@ function get_all_votes(users_obj) {
     return votes;
 }
 
-function get_fib_numbers() {
-    return [0, 1, 2, 3, 5, 8, 13, 20, 40, 100];
-}
-
 function get_average_number(votes) {
     var sum = 0;
     for (var vote in votes) {
@@ -35,12 +31,11 @@ function get_average_number(votes) {
 
 function workout_average_fib_number(votes) {
     var average = Math.round(get_average_number(votes)),
-        fibs = get_fib_numbers(),
         average_fib = 0;
 
-    for (var i in fibs) {
-        if (Math.abs(fibs[i] - average) < Math.abs(average_fib - average)) {
-            average_fib = fibs[i];
+    for (var i in fib_numbers) {
+        if (Math.abs(fib_numbers[i] - average) < Math.abs(average_fib - average)) {
+            average_fib = fib_numbers[i];
         }
     }
     return average_fib;
@@ -73,11 +68,10 @@ function get_upper_bound(avg_fib_position, fibs) {
 function is_extreme_vote(users_obj, vote) {
     var votes = get_all_votes(users_obj),
         avg_fib = workout_average_fib_number(votes),
-        fibs = get_fib_numbers(),
         // I don't know why but apparently this comes back as a string
-        avg_fib_position = parseInt(get_average_position(avg_fib, fibs), 10),
-        lower_bound = get_lower_bound(avg_fib_position, fibs),
-        upper_bound = get_upper_bound(avg_fib_position, fibs);
+        avg_fib_position = parseInt(get_average_position(avg_fib, fib_numbers), 10),
+        lower_bound = get_lower_bound(avg_fib_position, fib_numbers),
+        upper_bound = get_upper_bound(avg_fib_position, fib_numbers);
 
     // if further than one fib number away of the average, it's considdered an extreme
     if (lower_bound && vote < lower_bound || upper_bound && vote > upper_bound) {
