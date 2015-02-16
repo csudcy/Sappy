@@ -50,15 +50,19 @@ Template.scrum_master.helpers({
             // Voting is over; show the card
             var classes = 'card_front';
 
-            // highlight coffee or unknown
+            // Highlight coffee or unknown
             if (vote === 'C' || vote === '?') {
                 classes += ' highlight_non_vote';
+            } else {
+                // Highlight extreme
+                var users_obj = get_users(),
+                    votes = get_all_votes(users_obj),
+                    avg_fib_vote = Fib.workout_average_fib_number(votes);
+                if (Fib.is_extreme_vote(avg_fib_vote, vote)) {
+                    classes += ' highlight_extreme_vote';
+                }
             }
 
-            // highlight extreme
-            if (Fib.is_extreme_vote(get_users(), vote)) {
-                classes += ' highlight_extreme_vote';
-            }
             return classes;
         }
 

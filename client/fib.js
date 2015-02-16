@@ -27,11 +27,9 @@ Fib.workout_average_fib_number = function(votes) {
     return average_fib;
 };
 
-Fib.is_extreme_vote = function(users_obj, vote) {
-    var votes = get_all_votes(users_obj),
-        avg_fib = Fib.workout_average_fib_number(votes),
-        avg_fib_index = Fib.indexes[avg_fib],
+Fib.is_extreme_vote = function(avg_fib_vote, vote) {
+    var avg_fib_vote_index = Fib.indexes[avg_fib_vote],
         vote_index = Fib.indexes[vote];
 
-    return Math.abs(vote_index - avg_fib_index) > 1;
+    return Math.abs(vote_index - avg_fib_vote_index) > 1;
 };
