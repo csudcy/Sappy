@@ -78,8 +78,8 @@ Template.scrum_master.helpers({
 });
 
 Template.scrum_master.events({
-    'click .reset_votes': function () {
-        // insert a click record when the button is clicked
+    'click .reset_votes': function (event) {
+        // Remove all votes but keep the users here
         var set = {};
         Object.keys(get_users()).forEach(function(u){
             set['users.' + u] =  null;
@@ -95,12 +95,31 @@ Template.scrum_master.events({
             }
         );
     },
-    'click .clear_room': function () {
+    'click .clear_room': function (event) {
+        // Remove everyone from the room
         Rooms.update(
             {
                 '_id': PersistentSession.get('room'),
             },
             {}
+        );
+    },
+    'click .user_remove': function (event) {
+        // Remove a specific user from the room
+        var user_name = $(event.target).data('user_name');
+
+        // Hacky mongo
+        var unset = {};
+        unset['users.' + user_name] =  null;
+
+        //  Remove the user from the room
+        Rooms.update(
+            {
+                '_id': PersistentSession.get('room'),
+            },
+            {
+                $unset: unset
+            }
         );
     }
 });

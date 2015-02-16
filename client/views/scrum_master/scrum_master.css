@@ -6,3 +6,22 @@
     left: 0px;
     right: 0px;
 }
+
+.user_remove {
+    float: right;
+    background-color: black;
+    border-radius: 10px;
+    height: 15px;
+    width: 15px;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 1px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

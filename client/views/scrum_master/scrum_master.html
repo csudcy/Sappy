@@ -4,6 +4,8 @@
         <div>
             {{#each room_users}}
                 <span class="card card_container {{card_state vote}}">
+                    <span class="user_remove" data-user_name="{{name}}">X</span>
+
                     {{#if voting_done}}
                         <span class="card_text">{{vote}}</span>
                     {{/if}}
