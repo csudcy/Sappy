@@ -67,53 +67,21 @@ Template.welcome.events({
         if (error) {
             alert('You must fill in the form!');
         } else {
-            join(user_type, room, user);
+            // Save details to the persistent session
+            PersistentSession.set('room', room);
+            if (user_type === 'resource') {
+                PersistentSession.set('user', user);
+            }
+
+            // Join the room on the server
+            Meteor.call('join_room', user_type, room, user);
+
+            // Show the next template
+            if (user_type === 'resource') {
+                show_template(Template.resource);
+            } else {
+                show_template(Template.scrum_master);
+            }
         }
     }
 });
-
-function join(user_type, room, user) {
-    // Save details to the persistent session
-    PersistentSession.set('room', room);
-    if (user_type === 'resource') {
-        PersistentSession.set('user', user);
-    }
-
-    // Make sure the room exists
-    Rooms.upsert(
-        // Selector
-        {
-            _id: room
-        },
-        // Modifier
-        {
-            // If we've inserted the room, make sure it has a users object
-            $setOnInsert: {
-                users: {}
-            }
-        }
-    );
-
-    // Decide what to do
-    if (user_type === 'resource') {
-        // Make sure the user exists in the room
-        var set = {};
-        set['users.'+user] = null;
-        Rooms.update(
-            // Selector
-            {
-                _id: room
-            },
-            // Modifier
-            {
-                $set: set
-            }
-        );
-
-        // Show the next template
-        show_template(Template.resource);
-    } else {
-        // Show the next template
-        show_template(Template.scrum_master);
-    }
-}
