@@ -1,29 +1,34 @@
-
-function get_percentage() {
-    var users_obj = get_users();
-    var not_completed = 0;
-    for(var key in users_obj){
-        if (users_obj[key] === null){
-            not_completed++;
+function get_all_votes(users_obj) {
+    var votes = [];
+    for(var key in users_obj) {
+        if (users_obj[key] !== 'C' && users_obj[key] !== '?') {
+            votes.push(parseInt(users_obj[key], 10));
         }
     }
-    var result = (Object.keys(users_obj).length - not_completed) * 100 / Object.keys(users_obj).length;
-    return result;
+    return votes;
+}
+
+function get_percentage() {
+    var users_obj = get_users(),
+        completed = 0;
+    for(var key in users_obj){
+        if (users_obj[key] !== null){
+            completed++;
+        }
+    }
+    return completed * 100 / Object.keys(users_obj).length;
 }
 
 Template.scrum_master.helpers({
     room_users: function () {
-        var users_ar = [];
         var users_obj = get_users();
 
-        for(var key in users_obj){
-            users_ar.push({
+        return Object.keys(users_obj).map(function(key) {
+            return {
                 'name': key,
                 'vote': users_obj[key]
-            });
-        }
-
-        return users_ar;
+            };
+        });
     },
     room_name: function () {
         return PersistentSession.get('room');
@@ -36,13 +41,9 @@ Template.scrum_master.helpers({
         return get_percentage();
     },
     average: function() {
-        var users_obj = get_users();
-        if (finished_vote(users_obj)) {
-            // get all votes
-            var votes = get_all_votes(users_obj);
-            // get the average & display
-            return Fib.workout_average_fib_number(votes);
-        }
+        var users_obj = get_users(),
+            votes = get_all_votes(users_obj);
+        return Fib.workout_average_fib_number(votes);
     },
     card_state: function(vote) {
         var users_obj = get_users();

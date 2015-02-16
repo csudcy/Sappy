@@ -1,7 +1,6 @@
-function print_rooms () {
-    Rooms.find().forEach(function(item){
-        console.log(item);
-    });
+function current_vote() {
+    var users_obj = get_users();
+    return users_obj[PersistentSession.get('user')]
 }
 
 Template.resource.helpers({
@@ -12,14 +11,10 @@ Template.resource.helpers({
         return PersistentSession.get('user');
     },
     numbers: function () {
-        return [0, 1, 2,3, 5, 8,13, 20, 40,100, '?', 'C'];
+        return [0, 1, 2, 3, 5, 8, 13, 20, 40, 100, '?', 'C'];
     },
     is_selected: function(val) {
-        users = Rooms.findOne({
-            _id: PersistentSession.get('room')
-        }).users;
-
-        return (users[PersistentSession.get('user')] === String(val));
+        return (current_vote() === String(val));
     }
 });
 
@@ -45,8 +40,5 @@ Template.resource.events({
                 $set: set
             }
         );
-
-        // for debugging - shall remove later
-        // print_rooms();
     }
 });
