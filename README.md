@@ -23,7 +23,6 @@ https://github.com/AdmitHub/meteor-buildpack-horse seems to work well so far.
 ###Todo
 
 Public UI:
-* Add a QR code for the public URL
 * Add firworks/fanfares when everyone agrees!
 * Countdown before showing numbers?
 * Force end before everyone has voted
