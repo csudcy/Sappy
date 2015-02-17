@@ -121,5 +121,14 @@ Template.scrum_master.events({
                 $unset: unset
             }
         );
+    },
+    'click .show_qr': function(event) {
+        $('#qr_container')
+            .html('')
+            .qrcode(window.location.href)
+            .show();
+    },
+    'click #qr_container': function(event) {
+        $('#qr_container').hide();
     }
 });

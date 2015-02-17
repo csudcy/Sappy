@@ -25,3 +25,17 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+#qr_container {
+    display: none;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: white;
+}
+
+#qr_container canvas {
+    width: 100%;
+}
