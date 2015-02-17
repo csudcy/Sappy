@@ -123,12 +123,14 @@ Template.scrum_master.events({
         );
     },
     'click .show_qr': function(event) {
+        $('.scrum_master_container, #footer').hide();
         $('#qr_container')
             .html('')
             .qrcode(window.location.href)
             .show();
     },
     'click #qr_container': function(event) {
+        $('.scrum_master_container, #footer').show();
         $('#qr_container').hide();
     }
 });

@@ -7,6 +7,10 @@
     right: 0px;
 }
 
+.footer_buttons_right {
+    float: right;
+}
+
 .user_remove {
     float: right;
     background-color: black;
@@ -33,9 +37,10 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
-    background-color: white;
 }
 
 #qr_container canvas {
-    width: 100%;
+    width: 95%;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
 }
