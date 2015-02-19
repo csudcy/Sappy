@@ -2,12 +2,9 @@
 Adapted from http://jsfiddle.net/dtrooper/AceJJ/
 */
 
-var SCREEN_WIDTH = 0,
-    SCREEN_HEIGHT = 0,
-    mousePos = {
-        x: 400,
-        y: 300
-    },
+var ELEMENT_WIDTH = 0,
+    ELEMENT_HEIGHT = 0,
+    ELEMENT,
 
     // create canvas
     canvas = document.createElement('canvas'),
@@ -16,21 +13,28 @@ var SCREEN_WIDTH = 0,
     context_buffer = canvas_buffer.getContext('2d'),
     particles = [],
     rockets = [],
-    MAX_ROCKETS = 15,
+    MAX_ROCKETS = 5,
     MAX_PARTICLES = 500,
     colorCode = 0;
 
 // init
 setTimeout(function() {
-    document.body.appendChild(canvas);
+    ELEMENT = document.getElementsByTagName('div')[1];
+    ELEMENT.style.position = 'relative';
+    ELEMENT.appendChild(canvas);
+
     canvas.style.position = 'absolute';
     canvas.style.top = '0px';
+    canvas.style.bottom = '0px';
+    canvas.style.left = '0px';
+    canvas.style.right = '0px';
+
     setInterval(launch, 10);
     setInterval(loop, 1000 / 50);
 }, 1);
 
 function launch() {
-    launchFrom(Math.random() * SCREEN_WIDTH * 2 / 3 + SCREEN_WIDTH / 6);
+    launchFrom(Math.random() * ELEMENT_WIDTH * 2 / 3 + ELEMENT_WIDTH / 6);
 }
 
 function launchFrom(x) {
@@ -48,20 +52,20 @@ function launchFrom(x) {
 
 function loop() {
     // update screen size
-    if (SCREEN_WIDTH != window.innerWidth - 25) {
-        canvas.width = SCREEN_WIDTH = window.innerWidth - 25;
+    if (ELEMENT_WIDTH != ELEMENT.offsetWidth) {
+        canvas.width = ELEMENT_WIDTH = ELEMENT.offsetWidth;
         canvas_buffer.width = canvas.width;
     }
-    if (SCREEN_HEIGHT != window.innerHeight - 25) {
-        canvas.height = SCREEN_HEIGHT = window.innerHeight - 25;
+    if (ELEMENT_HEIGHT != ELEMENT.offsetHeight) {
+        canvas.height = ELEMENT_HEIGHT = ELEMENT.offsetHeight;
         canvas_buffer.height = canvas.height;
     }
 
     // fade the background out slowly
-    context_buffer.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    context_buffer.clearRect(0, 0, ELEMENT_WIDTH, ELEMENT_HEIGHT);
     context_buffer.globalAlpha = 0.9;
     context_buffer.drawImage(canvas, 0, 0);
-    context.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    context.clearRect(0, 0, ELEMENT_WIDTH, ELEMENT_HEIGHT);
     context.drawImage(canvas_buffer, 0, 0);
 
 
@@ -72,11 +76,8 @@ function loop() {
         rockets[i].update();
         rockets[i].render(context);
 
-        // calculate distance with Pythagoras
-        var distance = Math.sqrt(Math.pow(mousePos.x - rockets[i].pos.x, 2) + Math.pow(mousePos.y - rockets[i].pos.y, 2));
-
         // random chance of 1% if rockets is above the middle
-        var randomChance = rockets[i].pos.y < (SCREEN_HEIGHT * 2 / 3) ? (Math.random() * 100 <= 1) : false;
+        var randomChance = rockets[i].pos.y < (ELEMENT_HEIGHT * 2 / 3) ? (Math.random() * 100 <= 1) : false;
 
         /* Explosion rules
              - 80% of screen
@@ -84,7 +85,7 @@ function loop() {
             - close to the mouse
             - 1% chance of random explosion
         */
-        if (rockets[i].pos.y < SCREEN_HEIGHT / 5 || rockets[i].vel.y >= 0 || distance < 50 || randomChance) {
+        if (rockets[i].pos.y < ELEMENT_HEIGHT / 5 || rockets[i].vel.y >= 0 || randomChance) {
             rockets[i].explode();
         } else {
             existingRockets.push(rockets[i]);
@@ -189,7 +190,7 @@ Particle.prototype.exists = function() {
 function Rocket(x) {
     Particle.apply(this, [{
         x: x,
-        y: SCREEN_HEIGHT}]);
+        y: ELEMENT_HEIGHT}]);
 
     this.explosionColor = 0;
 }
