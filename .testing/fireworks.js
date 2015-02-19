@@ -2,8 +2,8 @@
 Adapted from http://jsfiddle.net/dtrooper/AceJJ/
 */
 
-var SCREEN_WIDTH = window.innerWidth,
-    SCREEN_HEIGHT = window.innerHeight,
+var SCREEN_WIDTH = 0,
+    SCREEN_HEIGHT = 0,
     mousePos = {
         x: 400,
         y: 300
@@ -12,19 +12,20 @@ var SCREEN_WIDTH = window.innerWidth,
     // create canvas
     canvas = document.createElement('canvas'),
     context = canvas.getContext('2d'),
+    canvas_buffer = document.createElement('canvas'),
+    context_buffer = canvas_buffer.getContext('2d'),
     particles = [],
     rockets = [],
-    MAX_PARTICLES = 400,
+    MAX_ROCKETS = 15,
+    MAX_PARTICLES = 500,
     colorCode = 0;
 
 // init
 setTimeout(function() {
     document.body.appendChild(canvas);
-    canvas.width = SCREEN_WIDTH;
-    canvas.height = SCREEN_HEIGHT;
     canvas.style.position = 'absolute';
     canvas.style.top = '0px';
-    setInterval(launch, 800);
+    setInterval(launch, 10);
     setInterval(loop, 1000 / 50);
 }, 1);
 
@@ -33,12 +34,12 @@ function launch() {
 }
 
 function launchFrom(x) {
-    if (rockets.length < 10) {
+    if (rockets.length < MAX_ROCKETS) {
         var rocket = new Rocket(x);
         rocket.explosionColor = Math.floor(Math.random() * 360 / 10) * 10;
         rocket.vel.y = Math.random() * -3 - 4;
         rocket.vel.x = Math.random() * 6 - 3;
-        rocket.size = 8;
+        rocket.size = 2;
         rocket.shrink = 0.999;
         rocket.gravity = 0.01;
         rockets.push(rocket);
@@ -49,15 +50,20 @@ function loop() {
     // update screen size
     if (SCREEN_WIDTH != window.innerWidth - 25) {
         canvas.width = SCREEN_WIDTH = window.innerWidth - 25;
+        canvas_buffer.width = canvas.width;
     }
     if (SCREEN_HEIGHT != window.innerHeight - 25) {
         canvas.height = SCREEN_HEIGHT = window.innerHeight - 25;
+        canvas_buffer.height = canvas.height;
     }
 
-    // clear canvas
-    context.fillStyle = "rgba(0, 0, 0, 0.05)";
-    context.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    //context.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    // fade the background out slowly
+    context_buffer.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    context_buffer.globalAlpha = 0.9;
+    context_buffer.drawImage(canvas, 0, 0);
+    context.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    context.drawImage(canvas_buffer, 0, 0);
+
 
     var existingRockets = [];
 
@@ -232,7 +238,7 @@ Rocket.prototype.render = function(c) {
 
     var gradient = c.createRadialGradient(x, y, 0.1, x, y, r);
     gradient.addColorStop(0.1, "rgba(255, 255, 255 ," + this.alpha + ")");
-    gradient.addColorStop(1, "rgba(0, 0, 0, " + this.alpha + ")");
+    gradient.addColorStop(0.2, "rgba(255, 180, 0, " + this.alpha + ")");
 
     c.fillStyle = gradient;
 
