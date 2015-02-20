@@ -2,6 +2,29 @@
 Adapted from http://jsfiddle.net/dtrooper/AceJJ/
 */
 
+/*
+(function( $ ) {
+    var FUNCTIONS = {
+        'init': function() {
+            // TODO
+        },
+        'destroy': function() {
+            // TODO
+        }
+    };
+
+    $.fn.fireworks = function(action) {
+        if (!action) {
+            // Assume no action means we want to init
+            action = 'init';
+        }
+        FUNCTIONS[action]();
+        return this;
+    };
+}(jQuery));
+*/
+
+
 var ELEMENT_WIDTH = 0,
     ELEMENT_HEIGHT = 0,
     ELEMENT,
