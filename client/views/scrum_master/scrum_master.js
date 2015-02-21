@@ -1,22 +1,48 @@
 function get_all_votes(users_obj) {
     var votes = [];
-    for(var key in users_obj) {
+    Object.keys(users_obj).forEach(function(key) {
         if (users_obj[key] !== 'C' && users_obj[key] !== '?') {
             votes.push(parseInt(users_obj[key], 10));
         }
-    }
+    });
     return votes;
 }
 
 function get_percentage() {
     var users_obj = get_users(),
         completed = 0;
-    for(var key in users_obj){
+    Object.keys(users_obj).forEach(function(key) {
         if (users_obj[key] !== null){
             completed++;
         }
-    }
+    });
     return completed * 100 / Object.keys(users_obj).length;
+}
+
+function synergising() {
+    var users_obj = get_users();
+
+    // Check we have some users
+    if (Object.keys(users_obj).length === 0) {
+        return false;
+    }
+
+    // Check the vote is complete
+    if (!finished_vote(users_obj)) {
+        return false;
+    }
+
+    // Check all the votes are the same
+    var all_votes = get_all_votes(users_obj),
+        first_vote = all_votes[0];
+    for (var i=0; i<all_votes.length; i++) {
+        if (all_votes[i] !== first_vote) {
+            return false;
+        }
+    }
+
+    // Looks like we're synergised!
+    return true;
 }
 
 Template.scrum_master.helpers({
@@ -74,6 +100,16 @@ Template.scrum_master.helpers({
 
         // Waiting for a vote
         return 'card_empty';
+    },
+    check_synergy: function() {
+        if (synergising()) {
+            $('.scrum_master_container').fireworks();
+        } else {
+            $('.scrum_master_container').fireworks('destroy');
+        }
+    },
+    synergising: function() {
+        return synergising();
     }
 });
 
@@ -132,5 +168,8 @@ Template.scrum_master.events({
     'click #qr_container': function(event) {
         $('.scrum_master_container, #footer').show();
         $('#qr_container').hide();
+    },
+    'click canvas': function() {
+        $('.scrum_master_container').fireworks('destroy');
     }
 });

@@ -15,6 +15,11 @@
                 <h2>Noone's playing :(</h2>
             {{/each}}
         </div>
+        {{#if synergising}}
+            <div class="synergy">
+                Synergy achieved!
+            </div>
+        {{/if}}
     </div>
     <div id="footer">
         <div class="progress">
@@ -35,4 +40,5 @@
         </div>
     </div>
     <div id="qr_container"></div>
+    {{check_synergy}}
 </template>
